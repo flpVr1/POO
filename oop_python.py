@@ -27,12 +27,19 @@ class Personaje:
         self.vida = 0
         print(self.nombre, "Ha muerto")
 
-    def dano(self, enemigo):
+    def daño(self, enemigo):
         return self.fuerza - enemigo.defensa
     
     def atacar(self, enemigo):
-        return self.fuerza - enemigo.defensa
+        daño = self.daño(enemigo)
+        enemigo.vida = enemigo.vida - daño
+        print(self.nombre, "ha realizado", daño, "puntos de daño a", enemigo.nombre)
+        if enemigo.esta_vivo():
+            print("La vida del personaje", enemigo.nombre, "es", enemigo.vida)
+        else:
+            return enemigo.morir()
 
 mi_personaje = Personaje('Felipe', 10, 1, 5, 100)
-mi_enemigo = Personaje("Enemigo Stando", 8, 5, 3, 100)
-print(mi_personaje.dano(mi_enemigo))
+mi_enemigo = Personaje("Enemigo Stando", 8, 5, 3, 5)
+mi_personaje.atacar(mi_enemigo)
+mi_enemigo.atributos()
