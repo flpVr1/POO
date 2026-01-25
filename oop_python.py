@@ -8,6 +8,7 @@ class Personaje:
         self.defensa = defensa
         self.vida = vida
 
+    # Atributos del personaje.
     def atributos(self):
         print(self.nombre, ":", sep=" ")
         print("• Fuerza:", self.fuerza)
@@ -15,21 +16,26 @@ class Personaje:
         print("• Defensa:", self.defensa)
         print("• Vida:", self.vida)
 
+    # Metodo para subir de nivel a las estadísticas del personaje
     def subir_nivel(self, fuerza, inteligencia, defensa):
         self.fuerza = self.fuerza + fuerza
         self.inteligencia = self.inteligencia + inteligencia
         self.defensa = self.defensa + defensa
 
+    # Metodo para indicar si el personaje esta vivo (True) o muerto (False)
     def esta_vivo(self):
         return self.vida > 0
     
+    # Metodo para indicar si el personaje está vivo o muerto
     def morir(self):
         self.vida = 0
         print(self.nombre, "Ha muerto")
 
+    # Metodo para hacer daño de acuerdo a la defensa del enemigo
     def daño(self, enemigo):
         return self.fuerza - enemigo.defensa
     
+    # Metodo para atacar
     def atacar(self, enemigo):
         daño = self.daño(enemigo)
         enemigo.vida = enemigo.vida - daño
