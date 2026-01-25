@@ -44,8 +44,45 @@ class Personaje:
             print("La vida del personaje", enemigo.nombre, "es", enemigo.vida)
         else:
             return enemigo.morir()
+        
+    # Metodos setters y getters
+    # El metodo get sirve para obtener un valor en particular y tener un mayor control de los métodos creados
+    def get_fuerza(self):
+        return self.fuerza
+    
+    # El método set establece el valor que recibirá get y lo dobreescribirá por sobre lo ya establecido
+    def set_fuerza(self, fuerza):
+        if fuerza < 0:
+            print('Error, haz ingresado un número negativo, intenta nuevamente')
+        else:
+            self.fuerza = fuerza
 
-mi_personaje = Personaje('Felipe', 10, 1, 5, 100)
-mi_enemigo = Personaje("Enemigo Stando", 8, 5, 3, 5)
-mi_personaje.atacar(mi_enemigo)
-mi_enemigo.atributos()
+# Herencias
+"""
+Las herencias son sumamente importantes ya que 
+ayudan a no escribir código repetitivo y hacer todo
+un poco más rápido a la hora de codificar
+"""
+
+class Guerrero(Personaje): # La herencia parte al momento de especificar entre parétesis de quien se van a heredar los métodos y atributos, que es de la clase Personaje.
+
+    # Para agregar un atributo adicional (Espada) a la Herencia en Guerrero se debe sobreescribir el constructor del Personaje.
+    def __init__(self, nombre, fuerza, inteligencia, defensa, vida, espada):
+        super().__init__(nombre, fuerza, inteligencia, defensa, vida)
+        self.espada = espada
+
+
+class Mago(Personaje):
+
+    def __init__(self, nombre, fuerza, inteligencia, defensa, vida, libro):
+        super().__init__(nombre, fuerza, inteligencia, defensa, vida)
+        self.libro = libro
+
+goku = Personaje('Goku', 10, 5, 5, 100)
+goku.atributos()
+guts = Guerrero('Guts', 20, 4, 7, 100, 5)
+guts.atributos()
+print(guts.espada)
+barbara = Mago('Bárbara', 8, 15, 6, 100, 8)
+barbara.atributos()
+print(barbara.libro)
